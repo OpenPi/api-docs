@@ -1,0 +1,147 @@
+#%RAML 0.8
+title: Plashboard
+version: v1
+mediaType: application/json
+
+schemas:
+ - sensor: !include plashboard-sensor.schema
+
+traits:
+  - secured:
+      description: Some requests require authentication
+      headers:
+        Authorization:
+          description: |
+             The JWT token provided by the /authorize method.
+          type: string
+          required: true
+      responses:
+        401:
+          body:
+            application/json:
+              schema: !include plashboard-error.schema
+              example: |
+                {
+                  "code": -2,
+                  "message": "Invalid token"
+                }
+
+
+/authorize:
+  post:
+    description: |
+      Get an authentication token.
+    body:
+      application/json:
+        schema: |
+          {
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-03/schema",
+            "id": "http://jsonschema.net",
+            "required": true,
+            "properties": {
+              "username": {
+                "type": "string",
+                "required": true
+              },
+              "password": {
+                "type": "string",
+                "required": true
+              }
+            }
+          }
+        example: |
+          {
+            "username": "plashboard",
+            "password": "1234"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            schema: |
+              {
+                "type": "object",
+                "$schema": "http://json-schema.org/draft-03/schema",
+                "id": "http://jsonschema.net",
+                "required": true,
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "A JWT token"
+                  }
+                }
+              }
+            example: |
+              {
+                "token": "ASDFGHJKL"
+              }
+      401:
+        body:
+          application/json:
+            schema: !include plashboard-error.schema
+            example: |
+              {
+                "code": -1,
+                "message": "Username and password invalid"
+              }
+
+/sensors:
+  get:
+    is: [ secured ]
+    description: Get sensors information.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+                [
+                  {
+                    "sensorId": "temperature",
+                    "sensorValue": 40
+                  },
+                  {
+                    "sensorId": "chlorine",
+                    "sensorValue": 40
+                  },
+                  {
+                    "sensorId": "presure",
+                    "sensorValue": 40
+                  },
+                ]
+  /{sensorId}:
+    description: Interactions with a specific sensor.
+    get:
+      is: [ secured ]
+      description: Get the sensor with `sensorId = {sensorId}`.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: sensor
+              example: |
+                {
+                  "sensorId": "temperature",
+                  "value": 40,
+                }
+        404:
+          body:
+            application/json:
+              schema: !include plashboard-error.schema
+              example: |
+                {
+                  "code": 404,
+                  "message": "Username and password invalid"
+                }
+    put:
+      is: [ secured ]
+      description: Set the sensor settings.
+      body:
+        application/json:
+          schema: sensor
+          example: |
+            example: |
+              {
+                "sensorId": "temperature",
+                "value": 40,
+              }

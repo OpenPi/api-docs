@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": true,
+  "properties": {
+    "sensorId": {
+      "type": "string",
+      "description": "Sensor ID",
+      "required": true,
+      "minLength": 36,
+      "maxLength": 36
+    },
+    "value": {
+      "type": "string",
+      "description": "Sensor value",
+      "required": true
+    }
+  }
+}
