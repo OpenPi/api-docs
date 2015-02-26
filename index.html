@@ -299,7 +299,31 @@
     "sensorId": "temperature",
     "value": 40,
   }
-</code></pre></div><div class="tab-pane" id="_sensors__sensorId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+</code></pre></div><div class="tab-pane" id="_sensors__sensorId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": true,
+  "properties": {
+    "sensorId": {
+      "type": "string",
+      "description": "Sensor ID",
+      "required": true,
+      "minLength": 36,
+      "maxLength": 36
+    },
+    "value": {
+      "type": "string",
+      "description": "Sensor value",
+      "required": true
+    }
+  }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "sensorId": "temperature",
+  "value": 40,
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "type": "object",
   "$schema": "http://json-schema.org/draft-03/schema",
   "id": "http://jsonschema.net",
