@@ -12,6 +12,7 @@ schemas:
     authentication: include schema/plashboard-authentication.raml
     authorized: schema/plashboard-authorized.json
     hardwareConfiguration: schema/plashboard-hardwareConfiguration.json
+    userConfiguration: schema/plashboard-userConfiguration.json
 
 traits:
   - secured:
@@ -323,7 +324,7 @@ traits:
                                     "done":0
                                 }
 
-/hardwareconfiguration:
+/hardwareconfigurations:
     get:
         is: [ basic, secured ]
         description: Get all hardwares informations.
@@ -375,4 +376,52 @@ traits:
                                     "PullUpDownResistor": "Up"
                                     "unit": "°C"
                                     "tension": "Null"
+                                }
+
+/userconfigurations:
+    get:
+        is: [ basic, secured ]
+        description: Get all configuration informations.
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: userConfiguration
+                        example: |
+                            [
+                                {
+                                    "id": 1 
+                                    "name": "Ph target"
+                                    "hardware_id": 4
+                                    "hardware_name": "Pool Ph Meter"
+                                    "unit": "Without"
+                                    "value": "7"
+                                },
+                                {
+                                    "id": 2
+                                    "name": "Temperature target"
+                                    "hardware_id": 1
+                                    "hardware_name": "Pool Temperature Sensor"
+                                    "unit": "°C"
+                                    "value": "22"
+                                }
+                            ]
+    /{userConfigurationId}:
+        description: Get information for a specific configuration.
+        get:
+            is: [ basic, secured ]
+            description: Get the userConfiguration information with `id = {userConfigurationId}`.
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: hardwareConfiguration
+                            example: |
+                                {
+                                    "id": 1 
+                                    "name": "Ph target"
+                                    "hardware_id": 4
+                                    "hardware_name": "Pool Ph Meter"
+                                    "unit": "Without"
+                                    "value": "7"
                                 }

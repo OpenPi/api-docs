@@ -1,0 +1,38 @@
+{
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"id": "http://jsonschema.net",
+	"required": true,
+	"properties": {
+		"id": {
+			"type": "integer",
+			"description": "User Configuration ID",
+			"required": true,
+		},
+		"name": {
+			"type": "string",
+			"description": "Configuration name to display",
+			"required": true,
+		},
+		"hardware_id": {
+			"type": "integer",
+			"description": "Hardware id where configuration have effect",
+			"required": true,
+		},
+		"hardware_name": {
+			"type": "string",
+			"description": "Hardware name to display",
+			"required": true
+		},
+		"unit": {
+			"type": "string",
+			"description": "Unit of value",
+			"required": true
+		},
+		"value": {
+			"type": "integer",
+			"description": "Value targeted",
+			"required": true
+		}
+	}
+}
