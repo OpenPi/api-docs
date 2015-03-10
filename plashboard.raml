@@ -9,7 +9,7 @@ schemas:
   - measures: schema/plashboard-measures.json
     userCommands: schema/plashboard-userCommands.json
     message: schema/plashboard-message.json
-    authentication: schema/plashboard-authentication.json
+    authentication: include schema/plashboard-authentication.raml
     authorized: schema/plashboard-authorized.json
     hardwareConfiguration: schema/plashboard-hardwareConfiguration.json
 
@@ -34,7 +34,7 @@ traits:
                             }
     basic:
         usage: Apply this to any method that needs basic methods
-        description: Some requests require basics messages
+        description: Some requests require basics methods
         responses:
             404:
                 body:
@@ -61,7 +61,7 @@ traits:
         queryParameters:
             time:
                 description: Date time to start the search
-                example: "2015-03-04 15:00:00"
+                example: time="2015-03-04 15:00:00"
                 required: false
                 type: string
 
@@ -71,7 +71,7 @@ traits:
         queryParameters:
             xlast:
                 description: Number of result max to given back
-                example: 5
+                example: xlast=5
                 required: false
                 type: integer
 
@@ -85,17 +85,16 @@ traits:
                 required: true
                 type: string
             password:
-                description: Hashed sha password for the user account
-                example: "MissPepper01091963 give 89018eab1dcab8bba137b1b13b54e079a924cd7c"
+                description: Password for the user account
                 required: true
                 type: string
         body:
-            application/json:
+            application/x-www-form-urlencoded:
                 schema: authentication
                 example: |
                     {
-                        "username": "Stark",
-                        "password": "89018eab1dcab8bba137b1b13b54e079a924cd7c"
+                        "username": Stark,
+                        "password": MissPepper01091963
                     }
         responses:
             200:
@@ -144,6 +143,7 @@ traits:
                                 "message": "Something went wrong in the server"
                             }
     delete:
+        is: [ secured ]
         description: |
             Delete the authentification
         responses:
@@ -178,23 +178,23 @@ traits:
                         example: |
                             [
                                 {
-                                    "id": 1,
-                                    "hardwareConfigurationId": 5,
-                                    "hardwareName": "temperature_sensor",
+                                    "measure_id": 1,
+                                    "hardware_id": 5,
+                                    "name": "Pool Temperature Sensor",
                                     "value": 21,
                                     "timestamp": "2015-03-03 14:22:00"
                                 },
                                 {
-                                    "id": 2,
-                                    "hardwareConfigurationId": 6,
-                                    "hardwareName": "ph_sensor",
+                                    "measure_id": 2,
+                                    "hardware_id": 6,
+                                    "name": "Pool Ph Sensor",
                                     "value": 7,
                                     "timestamp": "2015-03-03 14:35:03"
                                 },
                                 {
-                                    "id": 3,
-                                    "hardwareConfigurationId": 9,
-                                    "hardwareName": "pressure_sensor",
+                                    "measure_id": 3,
+                                    "hardware_id": 9,
+                                    "name": "Pool Pressure Sensor",
                                     "value": 4,
                                     "timestamp": "2015-03-03 14:40:52"
                                 }	
@@ -211,9 +211,9 @@ traits:
                             schema: measures
                             example: |
                                 {
-                                    "id": 1,
-                                    "hardwareConfigurationId": 5,
-                                    "hardwareName": "temperature_sensor",
+                                    "measure_id": 1,
+                                    "hardware_id": 5,
+                                    "name": "Pool Temperature Sensor",
                                     "value": 21,
                                     "timestamp": "2015-03-03 14:22:00"
                                 }
@@ -263,19 +263,25 @@ traits:
         queryParameters:
             command:
                 description: Command name in enum "Create, Delete, Update, Set"
-                example: "Create"
                 required: true
                 type: string
             targetName:
                 description: Target to apply value
-                example: "light"
                 required: true
                 type: string
             value:
                 description: Value to apply
-                example: "on"
                 required: true
                 type: string
+        body:
+            application/x-www-form-urlencoded:
+                example: |
+                    {
+                        "type": Actuator,
+                        "command": Set,
+                        "targetName": Light,
+                        "value": 0
+                    }
         responses:
             201:
                 body:

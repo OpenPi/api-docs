@@ -4,17 +4,17 @@
 	"id": "http://jsonschema.net",
 	"required": true,
 	"properties": {
-		"id": {
+		"measure_id": {
 			"type": "integer",
 			"description": "Measure ID",
 			"required": true,
 		},
-		"hardwareConfigurationId": {
+		"hardware_id": {
 			"type": "integer",
 			"description": "Sensor ID",
 			"required": true,
 		},
-		"hardwareName": {
+		"name": {
 			"type": "string",
 			"description": "Sensor name",
 			"required": true,
