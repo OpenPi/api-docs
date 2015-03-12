@@ -29,6 +29,11 @@
 			"description": "If the harware is an input (sensor) or output (actuator)",
 			"required": true
 		},
+		"init": {
+			"type": "string",
+			"description": "True False or null to set output pin to value when program start",
+			"required": true
+		},
 		"PullUpDownResistor": {
 			"type": "string",
 			"description": "If the harware is connected on a pull up or down resistor",
