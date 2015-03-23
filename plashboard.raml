@@ -489,3 +489,21 @@ traits:
                                     "timestamp": "2015-03-19 17:00:00",
                                     "is_viewed": 0
                                 }
+        put:
+            is: [ basic, secured ]
+            description: Update the alert show with `id = {alertId}`.
+            queryParameters:
+                show:
+                    description: 1 if user see the alert and 0 to display alert 
+                    required: true
+                    type: integer
+            responses:
+                200:
+                    body:
+                        application/json:
+                            schema: message
+                            example: |
+                                {
+                                    "code": 200,
+                                    "message": "Update done"
+                                }
