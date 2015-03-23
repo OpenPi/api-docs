@@ -1,0 +1,43 @@
+{
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"id": "http://jsonschema.net",
+	"required": true,
+	"properties": {
+		"alert_id": {
+			"type": "integer",
+			"description": "Alert ID",
+			"required": true,
+		},
+		"hardware_id": {
+			"type": "integer",
+			"description": "Sensor ID",
+			"required": true,
+		},
+		"hardware_name": {
+			"type": "string",
+			"description": "Sensor name",
+			"required": true,
+		},
+		"alert_name": {
+			"type": "string",
+			"description": "Alert name",
+			"required": true,
+		},
+		"alert_description": {
+			"type": "string",
+			"description": "Alert description",
+			"required": true
+		},
+		"timestamp": {
+			"type": "Datetime",
+			"description": "Datetime's Sensor value",
+			"required": true
+		},
+		"is_viewed": {
+			"type": "integer",
+			"description": "0 for user don't view the alert, 1 user already view alert",
+			"required": true
+		}
+	}
+}
