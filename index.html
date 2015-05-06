@@ -113,236 +113,359 @@
         .list-group-item:hover {
             background-color: #f5f5f5;
         }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Plashboard API documentation <small>version v1</small></h1><p></p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_authorize" class="panel-title">/authorize</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__authorize"><span class="parent"></span>/authorize</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_authorize_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__authorize" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_authorize_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Get an authentication token.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_authorize_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/authorize</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get an authentication token.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_authorize_post_request" data-toggle="tab">Request</a></li><li><a href="#_authorize_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_authorize_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "username": {
-      "type": "string",
-      "required": true
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Plashboard API documentation <small>version v1</small></h1><p>http://localhost/</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_authorize" class="panel-title">/authorize</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__authorize"><span class="parent"></span>/authorize</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_authorize_post"><span class="badge badge_post">post</span></a> <a href="#" data-toggle="modal" data-target="#_authorize_delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__authorize" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_authorize_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Authentificate user to access data</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_authorize_delete" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete the authentification</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_authorize_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/authorize</h4></div><div class="modal-body"><div class="alert alert-info"><p>Authentificate user to access data</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_authorize_post_request" data-toggle="tab">Request</a></li><li><a href="#_authorize_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_authorize_post_request"><h3>Query Parameters</h3><ul><li><strong>user</strong>: <em>required (string)</em><p>Name for the user account</p></li><li><strong>password</strong>: <em>required (string)</em><p>Password for the user account</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>include schema/plashboard-authentication.raml</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "username": Stark,
+    "password": MissPepper01091963
+}
+</code></pre></div><div class="tab-pane" id="_authorize_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 200,
+    "message": "You are now logged"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 400,
+    "message": "Bad parameters"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": -1,
+    "message": "Username and password invalid"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode GET not allowed"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 500,
+    "message": "Something went wrong in the server"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_authorize_delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent"></span>/authorize</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete the authentification</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_authorize_delete_request" data-toggle="tab">Request</a></li><li><a href="#_authorize_delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_authorize_delete_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul></div><div class="tab-pane" id="_authorize_delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 200,
+    "message": "You are disconnected"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 400,
+    "message": "You are already disconnected"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_measures" class="panel-title">/measures</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__measures"><span class="parent"></span>/measures</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_measures_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__measures" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_measures_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all measures for sensors.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_measures_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/measures</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all measures for sensors.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_measures_get_request" data-toggle="tab">Request</a></li><li><a href="#_measures_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_measures_get_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>xlast</strong>: <em>(integer)</em><p>Number of result max to given back</p><p><strong>Example</strong>:</p><pre><code>xlast=5</code></pre></li><li><strong>time</strong>: <em>(string)</em><p>Date time to start the search</p><p><strong>Example</strong>:</p><pre>time="2015-03-04 15:00:00"</pre></li></ul></div><div class="tab-pane" id="_measures_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-measures.json</code></pre><p><strong>Example</strong>:</p><pre><code>[
+    {
+        "measure_id": 1,
+        "hardware_id": 5,
+        "name": "Pool Temperature Sensor",
+        "value": 21,
+        "timestamp": "2015-03-03 14:22:00"
     },
-    "password": {
-      "type": "string",
-      "required": true
-    }
-  }
-}
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "username": "plashboard",
-  "password": "1234"
-}
-</code></pre></div><div class="tab-pane" id="_authorize_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "token": {
-      "type": "string",
-      "description": "A JWT token"
-    }
-  }
-}
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "token": "ASDFGHJKL"
-}
-</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "code": {
-      "type": "integer",
-      "description": "Error code",
-      "required": true
+    {
+        "measure_id": 2,
+        "hardware_id": 6,
+        "name": "Pool Ph Sensor",
+        "value": 7,
+        "timestamp": "2015-03-03 14:35:03"
     },
-    "message": {
-      "type": "string",
-      "description": "User friendly error message.",
-      "required": true
-    }
-  }
-}
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "code": -1,
-  "message": "Username and password invalid"
-}
-</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_sensors" class="panel-title">/sensors</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__sensors"><span class="parent"></span>/sensors</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_sensors_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__sensors" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_sensors_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get sensors information.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_sensors_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/sensors</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get sensors information.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_sensors_get_request" data-toggle="tab">Request</a></li><li><a href="#_sensors_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_sensors_get_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The JWT token provided by the /authorize method.</p></li></ul></div><div class="tab-pane" id="_sensors_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[
-  {
-    "sensorId": "temperature",
-    "sensorValue": 40
-  },
-  {
-    "sensorId": "chlorine",
-    "sensorValue": 40
-  },
-  {
-    "sensorId": "presure",
-    "sensorValue": 40
-  },
+    {
+        "measure_id": 3,
+        "hardware_id": 9,
+        "name": "Pool Pressure Sensor",
+        "value": 4,
+        "timestamp": "2015-03-03 14:40:52"
+    }	
 ]
-</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "code": {
-      "type": "integer",
-      "description": "Error code",
-      "required": true
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__measures__sensorId_"><span class="parent">/measures</span>/{sensorId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_measures__sensorId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__measures__sensorId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get measure for a specific sensor.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_measures__sensorId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the measure with <code>hardwareConfigurationId = {sensorId}</code>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_measures__sensorId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/measures</span>/{sensorId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the measure with <code>hardwareConfigurationId = {sensorId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_measures__sensorId__get_request" data-toggle="tab">Request</a></li><li><a href="#_measures__sensorId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_measures__sensorId__get_request"><h3>URI Parameters</h3><ul><li><strong>sensorId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>xlast</strong>: <em>(integer)</em><p>Number of result max to given back</p><p><strong>Example</strong>:</p><pre><code>xlast=5</code></pre></li><li><strong>time</strong>: <em>(string)</em><p>Date time to start the search</p><p><strong>Example</strong>:</p><pre>time="2015-03-04 15:00:00"</pre></li></ul></div><div class="tab-pane" id="_measures__sensorId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-measures.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "measure_id": 1,
+    "hardware_id": 5,
+    "name": "Pool Temperature Sensor",
+    "value": 21,
+    "timestamp": "2015-03-03 14:22:00"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_usercommands" class="panel-title">/usercommands</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__usercommands"><span class="parent"></span>/usercommands</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_usercommands_get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_usercommands_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__usercommands" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_usercommands_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all user commands.</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_usercommands_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Add a user command executate later by the python process</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_usercommands_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/usercommands</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all user commands.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_usercommands_get_request" data-toggle="tab">Request</a></li><li><a href="#_usercommands_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_usercommands_get_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>xlast</strong>: <em>(integer)</em><p>Number of result max to given back</p><p><strong>Example</strong>:</p><pre><code>xlast=5</code></pre></li><li><strong>time</strong>: <em>(string)</em><p>Date time to start the search</p><p><strong>Example</strong>:</p><pre>time="2015-03-04 15:00:00"</pre></li></ul></div><div class="tab-pane" id="_usercommands_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-userCommands.json</code></pre><p><strong>Example</strong>:</p><pre><code>[
+    {
+        "id": 1,
+        "type": "UserConfiguration",
+        "command": "Create",
+        "targetName": "userConfiguration",
+        "value": "ph_target:2:su:6",
+        "timestamp": "2015-03-03 14:22:00",
+        "done":1
     },
-    "message": {
-      "type": "string",
-      "description": "User friendly error message.",
-      "required": true
-    }
-  }
-}
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "code": -2,
-  "message": "Invalid token"
-}
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__sensors__sensorId_"><span class="parent">/sensors</span>/{sensorId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_sensors__sensorId__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_sensors__sensorId__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel__sensors__sensorId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Interactions with a specific sensor.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_sensors__sensorId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the sensor with <code>sensorId = {sensorId}</code>.</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_sensors__sensorId__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Set the sensor settings.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_sensors__sensorId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/sensors</span>/{sensorId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the sensor with <code>sensorId = {sensorId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_sensors__sensorId__get_request" data-toggle="tab">Request</a></li><li><a href="#_sensors__sensorId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_sensors__sensorId__get_request"><h3>URI Parameters</h3><ul><li><strong>sensorId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The JWT token provided by the /authorize method.</p></li></ul></div><div class="tab-pane" id="_sensors__sensorId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "sensorId": {
-      "type": "string",
-      "description": "Sensor ID",
-      "required": true,
-      "minLength": 36,
-      "maxLength": 36
+    {
+        "id": 2,
+        "type": "Actuators",
+        "command": "Set",
+        "targetName": "light",
+        "value": "1",
+        "timestamp": "2015-03-03 15:00:00",
+        "done":1
     },
-    "value": {
-      "type": "string",
-      "description": "Sensor value",
-      "required": true
-    }
-  }
+    {
+        "id": 3,
+        "type": "Actuators",
+        "command": "Set",
+        "targetName": "light",
+        "value": "0",
+        "timestamp": "2015-03-03 16:45:00",
+        "done":0
+    }	
+]
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "sensorId": "temperature",
-  "value": 40,
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
 }
-</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "code": {
-      "type": "integer",
-      "description": "Error code",
-      "required": true
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_usercommands_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/usercommands</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a user command executate later by the python process</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_usercommands_post_request" data-toggle="tab">Request</a></li><li><a href="#_usercommands_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_usercommands_post_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>command</strong>: <em>required (string)</em><p>Command name in enum "Create, Delete, Update, Set"</p></li><li><strong>targetName</strong>: <em>required (string)</em><p>Target to apply value</p></li><li><strong>value</strong>: <em>required (string)</em><p>Value to apply</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+    "type": Actuator,
+    "command": Set,
+    "targetName": Light,
+    "value": 0
+}
+</code></pre></div><div class="tab-pane" id="_usercommands_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 201,
+    "message": "Data created"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 400,
+    "message": "Bad parameters"
+}                            
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__usercommands__commandId_"><span class="parent">/usercommands</span>/{commandId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_usercommands__commandId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__usercommands__commandId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get information for a specific command.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_usercommands__commandId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the command with <code>id = {commandId}</code>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_usercommands__commandId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/usercommands</span>/{commandId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the command with <code>id = {commandId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_usercommands__commandId__get_request" data-toggle="tab">Request</a></li><li><a href="#_usercommands__commandId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_usercommands__commandId__get_request"><h3>URI Parameters</h3><ul><li><strong>commandId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>xlast</strong>: <em>(integer)</em><p>Number of result max to given back</p><p><strong>Example</strong>:</p><pre><code>xlast=5</code></pre></li><li><strong>time</strong>: <em>(string)</em><p>Date time to start the search</p><p><strong>Example</strong>:</p><pre>time="2015-03-04 15:00:00"</pre></li></ul></div><div class="tab-pane" id="_usercommands__commandId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-measures.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "id": 3,
+    "type": "Actuators",
+    "command": "Set",
+    "targetName": "light",
+    "value": "0",
+    "timestamp": "2015-03-03 16:45:00",
+    "done":0
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_hardwareconfigurations" class="panel-title">/hardwareconfigurations</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__hardwareconfigurations"><span class="parent"></span>/hardwareconfigurations</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_hardwareconfigurations_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__hardwareconfigurations" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_hardwareconfigurations_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all hardwares informations.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_hardwareconfigurations_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/hardwareconfigurations</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all hardwares informations.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_hardwareconfigurations_get_request" data-toggle="tab">Request</a></li><li><a href="#_hardwareconfigurations_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_hardwareconfigurations_get_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul></div><div class="tab-pane" id="_hardwareconfigurations_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-hardwareConfiguration.json</code></pre><p><strong>Example</strong>:</p><pre><code>[
+    {
+        "id": 1 
+        "name": "Pool Temperature Sensor"
+        "pin": 1
+        "type": "Analog"
+        "IO": "Input"
+        "init": "Null"
+        "PullUpDownResistor": "Up"
+        "unit": "°C"
+        "tension": "Null"
     },
-    "message": {
-      "type": "string",
-      "description": "User friendly error message.",
-      "required": true
+    {
+        "id": 2
+        "name": "Pool Light"
+        "pin": 5
+        "type": "Numeric"
+        "IO": "Output"
+        "init": "True"
+        "PullUpDownResistor": "None"
+        "unit": "Null"
+        "tension": "5"
     }
-  }
+]
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "code": -2,
-  "message": "Invalid token"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
 }
-</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "code": {
-      "type": "integer",
-      "description": "Error code",
-      "required": true
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__hardwareconfigurations__hardwareId_"><span class="parent">/hardwareconfigurations</span>/{hardwareId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_hardwareconfigurations__hardwareId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__hardwareconfigurations__hardwareId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get measure for a specific sensor.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_hardwareconfigurations__hardwareId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the hardware information with <code>id = {hardwareId}</code>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_hardwareconfigurations__hardwareId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/hardwareconfigurations</span>/{hardwareId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the hardware information with <code>id = {hardwareId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_hardwareconfigurations__hardwareId__get_request" data-toggle="tab">Request</a></li><li><a href="#_hardwareconfigurations__hardwareId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_hardwareconfigurations__hardwareId__get_request"><h3>URI Parameters</h3><ul><li><strong>hardwareId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul></div><div class="tab-pane" id="_hardwareconfigurations__hardwareId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-hardwareConfiguration.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "id": 1 
+    "name": "Pool Temperature Sensor"
+    "pin": 1
+    "type": "Analog"
+    "IO": "Input"
+    "init": "Null"
+    "PullUpDownResistor": "Up"
+    "unit": "°C"
+    "tension": "Null"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_userconfigurations" class="panel-title">/userconfigurations</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__userconfigurations"><span class="parent"></span>/userconfigurations</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_userconfigurations_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__userconfigurations" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_userconfigurations_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all configuration informations.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_userconfigurations_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/userconfigurations</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all configuration informations.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_userconfigurations_get_request" data-toggle="tab">Request</a></li><li><a href="#_userconfigurations_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_userconfigurations_get_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul></div><div class="tab-pane" id="_userconfigurations_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-userConfiguration.json</code></pre><p><strong>Example</strong>:</p><pre><code>[
+    {
+        "id": 1 
+        "name": "Ph target"
+        "hardware_id": 4
+        "hardware_name": "Pool Ph Meter"
+        "unit": "Without"
+        "value": "7"
     },
-    "message": {
-      "type": "string",
-      "description": "User friendly error message.",
-      "required": true
+    {
+        "id": 2
+        "name": "Temperature target"
+        "hardware_id": 1
+        "hardware_name": "Pool Temperature Sensor"
+        "unit": "°C"
+        "value": "22"
     }
-  }
+]
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "code": 404,
-  "message": "Username and password invalid"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
 }
-</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_sensors__sensorId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/sensors</span>/{sensorId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Set the sensor settings.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_sensors__sensorId__put_request" data-toggle="tab">Request</a></li><li><a href="#_sensors__sensorId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_sensors__sensorId__put_request"><h3>URI Parameters</h3><ul><li><strong>sensorId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The JWT token provided by the /authorize method.</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "sensorId": {
-      "type": "string",
-      "description": "Sensor ID",
-      "required": true,
-      "minLength": 36,
-      "maxLength": 36
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__userconfigurations__userConfigurationId_"><span class="parent">/userconfigurations</span>/{userConfigurationId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_userconfigurations__userConfigurationId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__userconfigurations__userConfigurationId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get information for a specific configuration.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_userconfigurations__userConfigurationId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the userConfiguration information with <code>id = {userConfigurationId}</code>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_userconfigurations__userConfigurationId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/userconfigurations</span>/{userConfigurationId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the userConfiguration information with <code>id = {userConfigurationId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_userconfigurations__userConfigurationId__get_request" data-toggle="tab">Request</a></li><li><a href="#_userconfigurations__userConfigurationId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_userconfigurations__userConfigurationId__get_request"><h3>URI Parameters</h3><ul><li><strong>userConfigurationId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul></div><div class="tab-pane" id="_userconfigurations__userConfigurationId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-hardwareConfiguration.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "id": 1 
+    "name": "Ph target"
+    "hardware_id": 4
+    "hardware_name": "Pool Ph Meter"
+    "unit": "Without"
+    "value": "7"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_alerts" class="panel-title">/alerts</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__alerts"><span class="parent"></span>/alerts</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_alerts_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__alerts" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_alerts_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all alerts actived or not.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_alerts_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/alerts</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all alerts actived or not.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_alerts_get_request" data-toggle="tab">Request</a></li><li><a href="#_alerts_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_alerts_get_request"><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>xlast</strong>: <em>(integer)</em><p>Number of result max to given back</p><p><strong>Example</strong>:</p><pre><code>xlast=5</code></pre></li><li><strong>time</strong>: <em>(string)</em><p>Date time to start the search</p><p><strong>Example</strong>:</p><pre>time="2015-03-04 15:00:00"</pre></li><li><strong>viewed</strong>: <em>(integer)</em><p>Filter result with 1 if alert is viewed or 0 if not</p></li></ul></div><div class="tab-pane" id="_alerts_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-alerts.json</code></pre><p><strong>Example</strong>:</p><pre><code>[
+    {
+        "alert_id": 1,
+        "hardware_id": 1,
+        "hardware_name": "Pool Temperature Sensor",
+        "alert_name": "Alert hight temperature  ",
+        "alert_description": "Water temperature is over the maximum authorize",
+        "timestamp": "2015-03-19 17:00:00",
+        "is_viewed": 1
     },
-    "value": {
-      "type": "string",
-      "description": "Sensor value",
-      "required": true
-    }
-  }
+    {
+        "alert_id": 1,
+        "hardware_id": 1,
+        "hardware_name": "Pool Temperature Sensor",
+        "alert_name": "Alert low temperature  ",
+        "alert_description": "Water temperature is under the minimum authorize",
+        "timestamp": "2015-03-19 17:00:00",
+        "is_viewed": 0
+    }  
+]
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>example: |
-  {
-    "sensorId": "temperature",
-    "value": 40,
-  }
-</code></pre></div><div class="tab-pane" id="_sensors__sensorId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "sensorId": {
-      "type": "string",
-      "description": "Sensor ID",
-      "required": true,
-      "minLength": 36,
-      "maxLength": 36
-    },
-    "value": {
-      "type": "string",
-      "description": "Sensor value",
-      "required": true
-    }
-  }
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "sensorId": "temperature",
-  "value": 40,
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
 }
-</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-03/schema",
-  "id": "http://jsonschema.net",
-  "required": true,
-  "properties": {
-    "code": {
-      "type": "integer",
-      "description": "Error code",
-      "required": true
-    },
-    "message": {
-      "type": "string",
-      "description": "User friendly error message.",
-      "required": true
-    }
-  }
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__alerts__alertId_"><span class="parent">/alerts</span>/{alertId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_alerts__alertId__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_alerts__alertId__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel__alerts__alertId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get information for a specific alert.</p></div><div class="list-group"><div data-toggle="modal" data-target="#_alerts__alertId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the alert with <code>id = {alertId}</code>.</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_alerts__alertId__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update the alert show with <code>id = {alertId}</code>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_alerts__alertId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/alerts</span>/{alertId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the alert with <code>id = {alertId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_alerts__alertId__get_request" data-toggle="tab">Request</a></li><li><a href="#_alerts__alertId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_alerts__alertId__get_request"><h3>URI Parameters</h3><ul><li><strong>alertId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>xlast</strong>: <em>(integer)</em><p>Number of result max to given back</p><p><strong>Example</strong>:</p><pre><code>xlast=5</code></pre></li><li><strong>time</strong>: <em>(string)</em><p>Date time to start the search</p><p><strong>Example</strong>:</p><pre>time="2015-03-04 15:00:00"</pre></li><li><strong>viewed</strong>: <em>(integer)</em><p>Filter result with 1 if alert is viewed or 0 if not</p></li></ul></div><div class="tab-pane" id="_alerts__alertId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-alerts.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "alert_id": 1,
+    "hardware_id": 1,
+    "hardware_name": "Pool Temperature Sensor",
+    "alert_name": "Alert low temperature  ",
+    "alert_description": "Water temperature is under the minimum authorize",
+    "timestamp": "2015-03-19 17:00:00",
+    "is_viewed": 0
 }
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "code": -2,
-  "message": "Invalid token"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_authorize">/authorize</a></li><li><a href="#_sensors">/sensors</a></li></ul></div></div></div></div></body></html>
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_alerts__alertId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/alerts</span>/{alertId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the alert show with <code>id = {alertId}</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_alerts__alertId__put_request" data-toggle="tab">Request</a></li><li><a href="#_alerts__alertId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_alerts__alertId__put_request"><h3>URI Parameters</h3><ul><li><strong>alertId</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>Authorization</strong>: <em>required (string)</em><p>The user have to require an authentification session provided by /authorize method.</p></li></ul><h3>Query Parameters</h3><ul><li><strong>show</strong>: <em>required (integer)</em><p>1 if user see the alert and 0 to display alert</p></li></ul></div><div class="tab-pane" id="_alerts__alertId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 200,
+    "message": "Update done"
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 401,
+    "message": "Authorized require"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 404,
+    "message": "Not found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/405" target="_blank">405</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>schema/plashboard-message.json</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "code": 405,
+    "message": "Methode POST not allowed"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_authorize">/authorize</a></li><li><a href="#_measures">/measures</a></li><li><a href="#_usercommands">/usercommands</a></li><li><a href="#_hardwareconfigurations">/hardwareconfigurations</a></li><li><a href="#_userconfigurations">/userconfigurations</a></li><li><a href="#_alerts">/alerts</a></li></ul></div></div></div></div></body></html>
