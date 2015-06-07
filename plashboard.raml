@@ -76,6 +76,15 @@ traits:
                 example: xlast=5
                 required: false
                 type: integer
+    hardwareSearchable:
+        usage: Apply this to any method that can be filter responses with the hardware id
+        description: Some requests can search data with a hardware id filter
+        queryParameters:
+            hardware:
+                description: Id of hardware to display
+                example: hardware=2
+                required: false
+                type: integer
 
 /authorize:
     post:
@@ -95,7 +104,7 @@ traits:
                 schema: authentication
                 example: |
                     {
-                        "username": Stark,
+                        "user": Stark,
                         "password": MissPepper01091963
                     }
         responses:
@@ -170,7 +179,7 @@ traits:
 
 /measures:
     get:
-        is: [ basic, secured, timeSearchable, limitedSearchable ]
+        is: [ basic, secured, timeSearchable, limitedSearchable, hardwareSearchable ]
         description: Get all measures for sensors.
         responses:
             200:
@@ -201,11 +210,11 @@ traits:
                                     "timestamp": "2015-03-03 14:40:52"
                                 }	
                             ]
-    /{sensorId}:
-        description: Get measure for a specific sensor.
+    /{measureId}:
+        description: Get specific measure.
         get:
-            is: [ basic, secured, timeSearchable, limitedSearchable ]
-            description: Get the measure with `hardwareConfigurationId = {sensorId}`.
+            is: [ basic, secured, timeSearchable, limitedSearchable, hardwareSearchable ]
+            description: Get the measure with `id = {measureId}`.
             responses:
                 200:
                     body:
